@@ -24,6 +24,7 @@ app.get("/", (_req: Request, res: Response) => {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Hello Misha!</title>
+        <link rel="icon" type="image/png" href="/icon.png" />
         <style>
           * { box-sizing: border-box; margin: 0; padding: 0; }
           html { height: 100%; }
