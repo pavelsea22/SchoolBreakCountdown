@@ -26,31 +26,40 @@ app.get("/", (_req: Request, res: Response) => {
         <title>Hello Misha!</title>
         <style>
           * { box-sizing: border-box; margin: 0; padding: 0; }
+          html { height: 100%; }
           body {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            font-family: sans-serif;
+            min-height: 100%;
+            min-height: 100dvh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: #f0f0f0;
-            gap: 1.5rem;
+            gap: clamp(0.6rem, 2.5vh, 1.25rem);
+            padding: 1rem 1rem;
             transition: background 0.5s;
           }
           body.animating {
             background: #e8f4ff;
           }
-          h1 {
-            font-size: 3rem;
-            color: #333;
+          img {
+            max-width: min(260px, 75vw);
+            width: 100%;
           }
-          #countdown-label {
-            font-size: 1.1rem;
-            color: #666;
+          h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            color: #333;
             text-align: center;
           }
+          #countdown-label {
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+            color: #666;
+            text-align: center;
+            padding: 0 0.5rem;
+          }
           #countdown-label.celebrate {
-            font-size: 2rem;
+            font-size: clamp(1.3rem, 5vw, 2rem);
             font-weight: 700;
             color: #3b82f6;
             animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -62,7 +71,7 @@ app.get("/", (_req: Request, res: Response) => {
           }
           #countdown {
             display: flex;
-            gap: 1.5rem;
+            gap: clamp(0.5rem, 3vw, 1.5rem);
             text-align: center;
           }
           .unit {
@@ -71,9 +80,9 @@ app.get("/", (_req: Request, res: Response) => {
             align-items: center;
             background: white;
             border-radius: 12px;
-            padding: 1rem 1.5rem;
+            padding: clamp(0.6rem, 3vw, 1rem) clamp(0.75rem, 3.5vw, 1.5rem);
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            min-width: 80px;
+            min-width: clamp(60px, 18vw, 80px);
             transition: box-shadow 0.3s, transform 0.3s;
           }
           body.animating .unit {
@@ -81,7 +90,7 @@ app.get("/", (_req: Request, res: Response) => {
             transform: scale(1.04);
           }
           .unit .value {
-            font-size: 2.5rem;
+            font-size: clamp(1.6rem, 7vw, 2.5rem);
             font-weight: 700;
             color: #333;
             font-variant-numeric: tabular-nums;
@@ -91,16 +100,16 @@ app.get("/", (_req: Request, res: Response) => {
             color: #3b82f6;
           }
           .unit .label {
-            font-size: 0.75rem;
+            font-size: clamp(0.6rem, 2.2vw, 0.75rem);
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: #999;
             margin-top: 4px;
           }
           #go-to-break {
-            margin-top: 0.5rem;
-            padding: 0.75rem 2rem;
-            font-size: 1rem;
+            margin-top: 0.25rem;
+            padding: 0.85rem 2.25rem;
+            font-size: clamp(0.95rem, 4vw, 1rem);
             font-weight: 600;
             color: white;
             background: #3b82f6;
@@ -109,13 +118,15 @@ app.get("/", (_req: Request, res: Response) => {
             cursor: pointer;
             box-shadow: 0 2px 10px rgba(59,130,246,0.4);
             transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
           }
           #go-to-break:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(59,130,246,0.5);
           }
           #go-to-break:active:not(:disabled) {
-            transform: translateY(0);
+            transform: scale(0.97);
           }
           #go-to-break:disabled {
             background: #93c5fd;
